@@ -1,0 +1,14 @@
+{
+  "name": "JARVIS Personal AI",
+  "short_name": "JARVIS",
+  "description": "Your personal AI assistant, ready when you are.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050b12",
+  "theme_color": "#050b12",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

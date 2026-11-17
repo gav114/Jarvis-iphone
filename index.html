@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#050b12">
+    <meta name="description" content="Your personal AI assistant, ready when you are.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JARVIS">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./icon.svg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="./styles.css">
+    <title>JARVIS · Personal AI</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="JARVIS home">
+          <span class="brand-mark" aria-hidden="true">J</span>
+          <span class="brand-copy"><strong>J.A.R.V.I.S.</strong><small>PERSONAL INTELLIGENCE</small></span>
+        </a>
+        <div class="top-actions">
+          <span id="connection-status" class="connection"><i></i><span>OFFLINE</span></span>
+          <button id="install-button" class="icon-button install-button" type="button" aria-label="Install JARVIS" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
+          </button>
+          <button id="account-button" class="avatar-button" type="button" aria-label="Sign in">···</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="welcome" aria-labelledby="welcome-title">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM ONLINE <span class="eyebrow-line"></span></div>
+          <h1 id="welcome-title">At your service<span class="accent">.</span></h1>
+          <p class="welcome-copy">A little clarity can change everything.<br>What’s on your mind?</p>
+        </section>
+
+        <section class="reactor-stage" aria-label="JARVIS is ready">
+          <div class="reactor-grid" aria-hidden="true"></div>
+          <div class="reactor-orbit orbit-one" aria-hidden="true"></div>
+          <div class="reactor-orbit orbit-two" aria-hidden="true"></div>
+          <div class="reactor">
+            <div class="reactor-core">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Glowing arc reactor">
+                <defs>
+                  <linearGradient id="core-gradient" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0" stop-color="#bafaff"/><stop offset=".48" stop-color="#3bdcf7"/><stop offset="1" stop-color="#1673e8"/>
+                  </linearGradient>
+                  <filter id="core-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                </defs>
+                <circle cx="60" cy="60" r="44" fill="none" stroke="#1b8cba" stroke-width="1" opacity=".8"/>
+                <circle cx="60" cy="60" r="35" fill="none" stroke="#63eaff" stroke-width="2" stroke-dasharray="3 5" opacity=".72"/>
+                <path d="M60 24 72 45 96 48 78 65 82 90 60 78 38 90 42 65 24 48 48 45Z" fill="none" stroke="url(#core-gradient)" stroke-width="2.2" filter="url(#core-glow)"/>
+                <circle cx="60" cy="60" r="10" fill="url(#core-gradient)" filter="url(#core-glow)"/>
+              </svg>
+            </div>
+          </div>
+          <span class="reactor-label">JARVIS <span>MK–01</span></span>
+          <div class="reactor-readout"><span>CORE</span><strong>STABLE</strong><span>98.6%</span></div>
+        </section>
+
+        <section class="conversation" aria-label="Conversation">
+          <div id="empty-state" class="empty-state">
+            <span class="empty-pulse" aria-hidden="true"></span>
+            <p>Your next idea starts here.</p>
+            <span>Ask anything. I’m listening.</span>
+          </div>
+          <div id="messages" class="messages" aria-live="polite" aria-relevant="additions text"></div>
+          <div id="typing-indicator" class="typing-indicator" hidden aria-label="JARVIS is thinking">
+            <span></span><span></span><span></span><small>PROCESSING</small>
+          </div>
+        </section>
+
+        <div class="quick-prompts" aria-label="Suggested prompts">
+          <button type="button" data-prompt="Give me a clear plan for today">Plan my day <span>↗</span></button>
+          <button type="button" data-prompt="Teach me something fascinating in two minutes">Surprise me <span>↗</span></button>
+          <button type="button" data-prompt="Help me think through an idea">Think with me <span>↗</span></button>
+        </div>
+      </main>
+
+      <footer class="composer-wrap">
+        <form id="composer" class="composer">
+          <button id="mic-button" class="composer-tool" type="button" aria-label="Start voice input" title="Voice input">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"/></svg>
+          </button>
+          <label class="sr-only" for="message-input">Message JARVIS</label>
+          <input id="message-input" name="message" type="text" placeholder="Message JARVIS..." maxlength="4000" autocomplete="off" disabled>
+          <button id="send-button" class="send-button" type="submit" aria-label="Send message" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-5 14-3-6-6-1Z"/><path d="m11 13 4-4"/></svg>
+          </button>
+        </form>
+        <div class="composer-meta"><span><i></i> <span id="composer-status">SIGN IN TO BEGIN</span></span><div class="composer-options"><button id="speak-toggle" type="button" aria-pressed="true" title="Toggle spoken replies">VOICE ON</button><button id="clear-button" type="button" hidden>Clear</button></div></div>
+      </footer>
+    </div>
+
+    <div id="auth-backdrop" class="auth-backdrop" hidden>
+      <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <button id="close-auth" class="auth-close" type="button" aria-label="Close sign in panel">×</button>
+        <div class="auth-kicker"><span class="brand-mark">J</span><span>SECURE ACCESS</span></div>
+        <h2 id="auth-title">Connect to<br><span>your intelligence.</span></h2>
+        <p class="auth-intro">Sign in with your Supabase project to start a private conversation.</p>
+        <form id="auth-form">
+          <label for="project-url">SUPABASE PROJECT URL</label>
+          <input id="project-url" name="project-url" type="url" placeholder="https://your-project.supabase.co" autocomplete="url" required>
+          <label for="anon-key">PUBLISHABLE / ANON KEY</label>
+          <input id="anon-key" name="anon-key" type="password" placeholder="sb_publishable_..." autocomplete="off" required>
+          <div class="auth-divider"><span>YOUR ACCOUNT</span></div>
+          <label for="email">EMAIL</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <label for="password">PASSWORD</label>
+          <input id="password" name="password" type="password" placeholder="At least 6 characters" minlength="6" autocomplete="current-password" required>
+          <div id="auth-error" class="auth-error" role="status" hidden></div>
+          <button id="auth-submit" class="auth-submit" type="submit">SIGN IN <span>→</span></button>
+        </form>
+        <button id="auth-mode" class="auth-mode" type="button">New here? <strong>Create an account</strong></button>
+        <p class="security-note"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg>Your password is never stored on this device.</p>
+      </section>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
